@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Message;
 use App\Models\Mailbox;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class MailboxController extends Controller
 {
     public function index()
     {
-        return view("backend.pages.mailbox");
+        $mails = Mailbox::all();
+        return view("backend.pages.mailbox", compact("mails"));
     }
 
     public function store(Request $request)
@@ -21,7 +24,7 @@ class MailboxController extends Controller
             "subject" => ["required"],
         ]);
 
-        Mailbox::create([
+        $mailbox = Mailbox::create([
             "name" => $request->name,
             "email" => $request->email,
             "message" => $request->message,
@@ -29,6 +32,8 @@ class MailboxController extends Controller
         ]);
 
         toastr()->success('Message successfully Sent!!', 'Congrats');
+
+        Mail::to("admin@admin.com")->send(new Message($mailbox));
 
         return redirect()->back();
     }
