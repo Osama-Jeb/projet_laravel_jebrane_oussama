@@ -11,7 +11,8 @@ class HomeController extends Controller
     {
         $products = Product::all();
         $lastFourElements = $products->slice(-4);
-        return view("frontend.pages.home", compact("products", "lastFourElements"));
+        $shuffled = Product::all()->shuffle()->take(3);
+        return view("frontend.pages.home", compact("products", "lastFourElements", "shuffled"));
     }
 
     public function contact()

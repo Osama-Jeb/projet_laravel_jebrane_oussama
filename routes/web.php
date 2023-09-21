@@ -37,7 +37,11 @@ Route::post("/newsletter", [AdminController::class, "sendMail"])->name("newslett
 
 // ^^ PRODUCT
 Route::get("/products", [ProductController::class, "index"])->name("product.index");
+Route::get("/products/admin", [ProductController::class, "admin"])->name("product.admin");
 Route::get("/products/show/{product}", [ProductController::class, "show"])->name("product.show");
+Route::post("/products/store", [ProductController::class, "store"])->name("product.store");
+Route::put("/products/update/{product}", [ProductController::class, "update"])->name("product.update");
+Route::delete("/products/delete/{product}", [ProductController::class, "destroy"])->name("product.destroy");
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');

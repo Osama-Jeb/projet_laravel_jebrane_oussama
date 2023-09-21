@@ -7,27 +7,26 @@
             <div class="row align-items-center">
                 <div class="col-lg-12">
                     <div class="banner_slider owl-carousel">
-                        @for ($i = 0; $i < 3; $i++)
+                        @foreach ($shuffled as $item)
                             <div class="single_banner_slider">
                                 <div class="row">
                                     <div class="col-lg-5 col-md-8">
                                         <div class="banner_text">
                                             <div class="banner_text_iner">
-                                                <h1>{{ $products[$i]->name }}</h1>
-                                                <p>{{ $products[$i]->desc }}</p>
-                                                <a href="{{ route('product.show', [$products[$i]]) }}" class="btn_2">buy
+                                                <h1>{{ $item->name }}</h1>
+                                                <p>{{ $item->desc }}</p>
+                                                <a href="{{ route('product.show', $item) }}" class="btn_2">buy
                                                     now</a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="banner_img d-none d-lg-block">
-                                        <img src="{{ asset('storage/img/products/' . $products[$i]->image) }}"
+                                        <img src="{{ asset('storage/img/products/' . $item->image) }}"
                                             alt="">
                                     </div>
                                 </div>
                             </div>
-                        @endfor
-
+                        @endforeach
                     </div>
                     <div class="slider-counter"></div>
                 </div>
@@ -164,6 +163,7 @@
                                     <div class="single_product_text">
                                         <h4>{{ $product->name }}</h4>
                                         <h3><b>${{ $product->price }}</b></h3>
+                                        <a class="add_cart">+ add to cart<i class="ti-heart"></i></a>
                                     </div>
                                 </div>
                             @endif

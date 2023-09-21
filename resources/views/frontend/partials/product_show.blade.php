@@ -26,36 +26,37 @@
                 <div class="col-lg-7 col-xl-7">
                     <div class="product_slider_img">
                         <div id="vertical">
-                            <div data-thumb="img/product/single-product/product_1.png">
-                                <img src="{{ asset('storage/img/products/' . $product->image) }}" />
+                            <div data-thumb="{{asset('storage/img/products/' . $product->image)}}">
+                                <img src="{{asset('storage/img/products/' . $product->image)}}" />
                             </div>
-                            <div data-thumb="img/product/single-product/product_1.png">
-                                <img src="img/product/single-product/product_1.png" />
+                            <div data-thumb="{{asset('storage/img/products/' . $product->image)}}">
+                                <img src="{{asset('storage/img/products/' . $product->image)}}" />
                             </div>
-                            <div data-thumb="img/product/single-product/product_1.png">
-                                <img src="img/product/single-product/product_1.png" />
+                            <div data-thumb="{{asset('storage/img/products/' . $product->image)}}">
+                                <img src="{{asset('storage/img/products/' . $product->image)}}" />
                             </div>
-                            <div data-thumb="img/product/single-product/product_1.png">
-                                <img src="img/product/single-product/product_1.png" />
+                            <div data-thumb="{{asset('storage/img/products/' . $product->image)}}">
+                                <img src="{{asset('storage/img/products/' . $product->image)}}" />
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-5 col-xl-4">
                     <div class="s_product_text">
-                        <h3>{{ $product->name }}</h3>
-                        <h2>${{ $product->price }}</h2>
+                        <h5>previous <span>|</span> next</h5>
+                        <h3>{{$product->name}}</h3>
+                        <h2>${{$product->price}}</h2>
                         <ul class="list">
                             <li>
                                 <a class="active" href="#">
-                                    <span>Category</span> : {{ $product->category }}</a>
+                                    <span>Category</span> : {{$product->category->category}}</a>
                             </li>
                             <li>
-                                <a href="#"> <span>Availibility</span> : {{ $product->stock }} left</a>
+                                <a href="#"> <span>Availibility</span> : {{$product->stock}} left</a>
                             </li>
                         </ul>
                         <p>
-                            {{ $product->desc }}
+                            {{$product->desc}}
                         </p>
                         <div class="card_area d-flex justify-content-between align-items-center">
                             <div class="product_count">
@@ -506,41 +507,16 @@
             <div class="row align-items-center justify-content-between">
                 <div class="col-lg-12">
                     <div class="best_product_slider owl-carousel">
+                        @foreach ($shuffled as $item)
                         <div class="single_product_item">
-                            <img src="img/product/product_1.png" alt="">
+                            <img src="{{asset('storage/img/products/' . $item->image)}}" alt="">
                             <div class="single_product_text">
-                                <h4>Quartz Belt Watch</h4>
-                                <h3>$150.00</h3>
+                                <h4>{{$item->name}}</h4>
+                                <h3>${{$item->price}}</h3>
                             </div>
                         </div>
-                        <div class="single_product_item">
-                            <img src="img/product/product_2.png" alt="">
-                            <div class="single_product_text">
-                                <h4>Quartz Belt Watch</h4>
-                                <h3>$150.00</h3>
-                            </div>
-                        </div>
-                        <div class="single_product_item">
-                            <img src="img/product/product_3.png" alt="">
-                            <div class="single_product_text">
-                                <h4>Quartz Belt Watch</h4>
-                                <h3>$150.00</h3>
-                            </div>
-                        </div>
-                        <div class="single_product_item">
-                            <img src="img/product/product_4.png" alt="">
-                            <div class="single_product_text">
-                                <h4>Quartz Belt Watch</h4>
-                                <h3>$150.00</h3>
-                            </div>
-                        </div>
-                        <div class="single_product_item">
-                            <img src="img/product/product_5.png" alt="">
-                            <div class="single_product_text">
-                                <h4>Quartz Belt Watch</h4>
-                                <h3>$150.00</h3>
-                            </div>
-                        </div>
+                            
+                        @endforeach
                     </div>
                 </div>
             </div>

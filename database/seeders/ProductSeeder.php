@@ -20,7 +20,7 @@ class ProductSeeder extends Seeder
                 "stock" => 10,
                 "price" => 149,
                 "image" => "product_1.png",
-                "category" => "chair",
+                "category_id" => 1,
                 "user_id" => 1,
             ],
             [
@@ -29,7 +29,7 @@ class ProductSeeder extends Seeder
                 "stock" => 20,
                 "price" => 249,
                 "image" => "product_2.png",
-                "category" => "chair",
+                "category_id" => 1,
                 "user_id" => 1,
             ],
             [
@@ -38,7 +38,7 @@ class ProductSeeder extends Seeder
                 "stock" => 30,
                 "price" => 349,
                 "image" => "product_3.png",
-                "category" => "chair",
+                "category_id" => 1,
                 "user_id" => 1,
             ],
             [
@@ -47,7 +47,7 @@ class ProductSeeder extends Seeder
                 "stock" => 40,
                 "price" => 449,
                 "image" => "product_4.png",
-                "category" => "chair",
+                "category_id" => 1,
                 "user_id" => 1,
             ],
             [
@@ -56,7 +56,7 @@ class ProductSeeder extends Seeder
                 "stock" => 50,
                 "price" => 549,
                 "image" => "product_5.png",
-                "category" => "chair",
+                "category_id" => 1,
                 "user_id" => 1,
             ],
             [
@@ -65,7 +65,7 @@ class ProductSeeder extends Seeder
                 "stock" => 60,
                 "price" => 649,
                 "image" => "product_6.png",
-                "category" => "chair",
+                "category_id" => 1,
                 "user_id" => 1,
             ],
             [
@@ -74,7 +74,7 @@ class ProductSeeder extends Seeder
                 "stock" => 70,
                 "price" => 749,
                 "image" => "product_7.png",
-                "category" => "chair",
+                "category_id" => 1,
                 "user_id" => 1,
             ],
             [
@@ -83,7 +83,7 @@ class ProductSeeder extends Seeder
                 "stock" => 80,
                 "price" => 849,
                 "image" => "product_8.png",
-                "category" => "chair",
+                "category_id" => 1,
                 "user_id" => 1,
             ],
 
@@ -93,7 +93,7 @@ class ProductSeeder extends Seeder
                 "stock" => 10,
                 "price" => 111,
                 "image" => "i1.jpg",
-                "category" => "inspired",
+                "category_id" => 2,
                 "user_id" => 1,
             ],
             [
@@ -102,7 +102,7 @@ class ProductSeeder extends Seeder
                 "stock" => 20,
                 "price" => 222,
                 "image" => "i2.jpg",
-                "category" => "inspired",
+                "category_id" => 2,
                 "user_id" => 1,
             ],
             [
@@ -111,7 +111,7 @@ class ProductSeeder extends Seeder
                 "stock" => 30,
                 "price" => 311,
                 "image" => "i3.jpg",
-                "category" => "inspired",
+                "category_id" => 2,
                 "user_id" => 1,
             ],
             [
@@ -120,7 +120,7 @@ class ProductSeeder extends Seeder
                 "stock" => 40,
                 "price" => 411,
                 "image" => "i4.jpg",
-                "category" => "inspired",
+                "category_id" => 2,
                 "user_id" => 1,
             ],
             [
@@ -129,7 +129,7 @@ class ProductSeeder extends Seeder
                 "stock" => 50,
                 "price" => 511,
                 "image" => "i5.jpg",
-                "category" => "inspired",
+                "category_id" => 2,
                 "user_id" => 1,
             ],
             [
@@ -138,7 +138,7 @@ class ProductSeeder extends Seeder
                 "stock" => 60,
                 "price" => 611,
                 "image" => "i6.jpg",
-                "category" => "inspired",
+                "category_id" => 2,
                 "user_id" => 1,
             ],
             [
@@ -147,7 +147,7 @@ class ProductSeeder extends Seeder
                 "stock" => 70,
                 "price" => 711,
                 "image" => "i7.jpg",
-                "category" => "inspired",
+                "category_id" => 2,
                 "user_id" => 1,
             ],
             [
@@ -156,7 +156,7 @@ class ProductSeeder extends Seeder
                 "stock" => 80,
                 "price" => 811,
                 "image" => "i8.jpg",
-                "category" => "inspired",
+                "category_id" => 2,
                 "user_id" => 1,
             ],
 
@@ -165,8 +165,8 @@ class ProductSeeder extends Seeder
                 "desc" => "wow what a description about model",
                 "stock" => 10,
                 "price" => 123,
-                "image" => "i1.jpg",
-                "category" => "inspired",
+                "image" => "model1.jpg",
+                "category_id" => 3,
                 "user_id" => 1,
             ],
             [
@@ -174,8 +174,8 @@ class ProductSeeder extends Seeder
                 "desc" => "wow what a description about model",
                 "stock" => 20,
                 "price" => 223,
-                "image" => "i2.jpg",
-                "category" => "inspired",
+                "image" => "model2.jpg",
+                "category_id" => 3,
                 "user_id" => 1,
             ],
             [
@@ -183,8 +183,8 @@ class ProductSeeder extends Seeder
                 "desc" => "wow what a description about model",
                 "stock" => 30,
                 "price" => 323,
-                "image" => "i3.jpg",
-                "category" => "inspired",
+                "image" => "model3.jpg",
+                "category_id" => 3,
                 "user_id" => 1,
             ],
             [
@@ -192,8 +192,8 @@ class ProductSeeder extends Seeder
                 "desc" => "wow what a description about model",
                 "stock" => 40,
                 "price" => 423,
-                "image" => "i4.jpg",
-                "category" => "inspired",
+                "image" => "model4.jpg",
+                "category_id" => 3,
                 "user_id" => 1,
             ],
             [
@@ -201,8 +201,8 @@ class ProductSeeder extends Seeder
                 "desc" => "wow what a description about model",
                 "stock" => 50,
                 "price" => 523,
-                "image" => "i5.jpg",
-                "category" => "inspired",
+                "image" => "model5.jpg",
+                "category_id" => 3,
                 "user_id" => 1,
             ],
             [
@@ -210,8 +210,8 @@ class ProductSeeder extends Seeder
                 "desc" => "wow what a description about model",
                 "stock" => 60,
                 "price" => 623,
-                "image" => "i6.jpg",
-                "category" => "inspired",
+                "image" => "model6.jpg",
+                "category_id" => 3,
                 "user_id" => 1,
             ],
             [
@@ -219,8 +219,8 @@ class ProductSeeder extends Seeder
                 "desc" => "wow what a description about model",
                 "stock" => 70,
                 "price" => 723,
-                "image" => "i7.jpg",
-                "category" => "inspired",
+                "image" => "model7.jpg",
+                "category_id" => 3,
                 "user_id" => 1,
             ],
             [
@@ -228,8 +228,8 @@ class ProductSeeder extends Seeder
                 "desc" => "wow what a description about model",
                 "stock" => 80,
                 "price" => 823,
-                "image" => "i8.jpg",
-                "category" => "inspired",
+                "image" => "model8.jpg",
+                "category_id" => 3,
                 "user_id" => 1,
             ],
         ]);

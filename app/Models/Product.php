@@ -15,7 +15,7 @@ class Product extends Model
         "stock",
         "price",
         "image",
-        "category",
+        "category_id",
         "user_id",
     ];
 
@@ -27,5 +27,10 @@ class Product extends Model
     public function users()
     {
         return $this->belongsToMany(User::class, "user_products");
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }
