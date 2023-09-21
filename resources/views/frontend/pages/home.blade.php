@@ -1,14 +1,32 @@
 @extends('layouts.front_layout')
 
 @section('content')
-
-
     <!-- banner part start-->
     <section class="banner_part">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-12">
                     <div class="banner_slider owl-carousel">
+                        @for ($i = 0; $i < 3; $i++)
+                            <div class="single_banner_slider">
+                                <div class="row">
+                                    <div class="col-lg-5 col-md-8">
+                                        <div class="banner_text">
+                                            <div class="banner_text_iner">
+                                                <h1>{{ $products[$i]->name }}</h1>
+                                                <p>{{ $products[$i]->desc }}</p>
+                                                <a href="{{ route('product.show', [$products[$i]]) }}" class="btn_2">buy
+                                                    now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="banner_img d-none d-lg-block">
+                                        <img src="{{ asset('storage/img/products/' . $products[$i]->image) }}"
+                                            alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        @endfor
                         <div class="single_banner_slider">
                             <div class="row">
                                 <div class="col-lg-5 col-md-8">
@@ -64,22 +82,22 @@
                             </div>
                         </div>
                         <!-- <div class="single_banner_slider">
-                                    <div class="row">
-                                        <div class="col-lg-5 col-md-8">
-                                            <div class="banner_text">
-                                                <div class="banner_text_iner">
-                                                    <h1>Cloth $ Wood Sofa</h1>
-                                                    <p>Incididunt ut labore et dolore magna aliqua quis ipsum
-                                                        suspendisse ultrices gravida. Risus commodo viverra</p>
-                                                    <a href="#" class="btn_2">buy now</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="banner_img d-none d-lg-block">
-                                            <img src="img/banner_img.png" alt="">
-                                        </div>
-                                    </div>
-                                </div> -->
+                                                    <div class="row">
+                                                        <div class="col-lg-5 col-md-8">
+                                                            <div class="banner_text">
+                                                                <div class="banner_text_iner">
+                                                                    <h1>Cloth $ Wood Sofa</h1>
+                                                                    <p>Incididunt ut labore et dolore magna aliqua quis ipsum
+                                                                        suspendisse ultrices gravida. Risus commodo viverra</p>
+                                                                    <a href="#" class="btn_2">buy now</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="banner_img d-none d-lg-block">
+                                                            <img src="img/banner_img.png" alt="">
+                                                        </div>
+                                                    </div>
+                                                </div> -->
                     </div>
                     <div class="slider-counter"></div>
                 </div>
@@ -330,7 +348,7 @@
             <div class="row align-items-center justify-content-between">
                 <div class="col-lg-6 col-md-6">
                     <div class="offer_img">
-                        <img src="img/offer_img.png" alt="">
+                        <img src="{{ asset('storage/img/products/' . $products[0]->image) }}" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
@@ -345,13 +363,19 @@
                                 <div id="seconds" class="date"></div>
                             </div>
                         </div>
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="enter email address"
-                                aria-label="Recipient's username" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <a href="#" class="input-group-text btn_2" id="basic-addon2">book now</a>
+                        <form action="{{ route('newsletter.send') }}" method="POST">
+                            @csrf
+                            <div class="input-group">
+                                <input type="email" class="form-control" placeholder="enter email address"
+                                    aria-label="Recipient's username" aria-describedby="basic-addon2" name="email"
+                                    id="email">
+                                <div class="input-group-append">
+                                    <button class="input-group-text btn_2" id="basic-addon2" type="submit">book
+                                        now</button>
+                                </div>
                             </div>
-                        </div>
+
+                        </form>
                     </div>
                 </div>
             </div>
@@ -423,13 +447,19 @@
                         <h5>Join Our Newsletter</h5>
                         <h2>Subscribe to get Updated
                             with new offers</h2>
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="enter email address"
-                                aria-label="Recipient's username" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <a href="#" class="input-group-text btn_2" id="basic-addon2">subscribe now</a>
+                        <form action="{{ route('newsletter.send') }}" method="POST">
+                            @csrf
+                            <div class="input-group">
+                                <input type="email" class="form-control" placeholder="enter email address"
+                                    aria-label="Recipient's username" aria-describedby="basic-addon2" name="email"
+                                    id="email">
+                                <div class="input-group-append">
+                                    <button class="input-group-text btn_2" id="basic-addon2" type="submit">Subscribe
+                                        now</button>
+                                </div>
                             </div>
-                        </div>
+
+                        </form>
                     </div>
                 </div>
             </div>

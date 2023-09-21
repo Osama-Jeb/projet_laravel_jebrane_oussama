@@ -9,13 +9,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view("frontend.pages.home");
-    }
-
-    public function category()
-    {
         $products = Product::all();
-        return view("frontend.pages.category", compact("products"));
+        return view("frontend.pages.home", compact("products"));
     }
 
     public function contact()

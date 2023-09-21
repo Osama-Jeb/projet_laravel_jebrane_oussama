@@ -1,4 +1,4 @@
-{{-- <x-app-layout>
+<x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Dashboard') }}
@@ -14,10 +14,10 @@
             </div>
         </div>
     </div>
-</x-app-layout> --}}
+</x-app-layout>
 
-@extends("layouts.back_layout")
+{{-- @extends("layouts.back_layout")
 
 @section("content")
     <h1>DASHBOARD HERE</h1>
-@endsection
+@endsection --}}

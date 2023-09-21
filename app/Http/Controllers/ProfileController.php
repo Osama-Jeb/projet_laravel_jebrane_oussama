@@ -55,6 +55,7 @@ class ProfileController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
+        toastr()->error("Logged out", "logout");
         return Redirect::to('/');
     }
 }

@@ -28,9 +28,7 @@
         </div>
     @endif
 
-    <div class="bg-green-400">
-        <h1 class="text-red-600">TESTING</h1>
-    </div>
+
 </body>
 
 </html>

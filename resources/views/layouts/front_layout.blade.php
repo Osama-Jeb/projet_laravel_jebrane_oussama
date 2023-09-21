@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="css/animate.css">
     <!-- owl carousel CSS -->
     <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/lightslider.min.css">
     <!-- font awesome CSS -->
     <link rel="stylesheet" href="css/all.css">
     <!-- flaticon CSS -->
@@ -38,7 +39,8 @@
             <div class="row align-items-center">
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="index.html"> <img src="img/logo.png" alt="logo"> </a>
+                        <a class="navbar-brand" href="{{ route('home.index') }}"> <img src="img/logo.png"
+                                alt="logo"> </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -53,20 +55,40 @@
 
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('home.category') }}">Shop</a>
+                                    <a class="nav-link" href="{{ route('product.index') }}">Shop</a>
                                 </li>
 
-                                
+
 
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('home.contact') }}">Contact</a>
                                 </li>
+
+                                @role('admin')
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('dashboard') }}">Backend</a>
+                                    </li>
+                                @endrole
                             </ul>
                         </div>
                         <div class="hearer_icon d-flex">
                             <a href=""><i class="fa-regular fa-heart"></i></a>
                             <a href="{{ route('home.cart') }}"><i class="fas fa-cart-plus"></i></a>
-                            <a href="{{ route('home.signin') }}"><i class="fa-regular fa-user"></i></a>
+                            @auth
+                                {{-- <a href="{{ route('logout') }}"><i class="fa-regular fa-user text-danger"></i></a> --}}
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+
+                                    <x-dropdown-link class="text-danger" :href="route('logout')"
+                                        onclick="event.preventDefault();
+                                                        this.closest('form').submit();">
+                                        {{ __('Log Out') }}
+                                    </x-dropdown-link>
+                                </form>
+                            @else
+                                <a href="{{ route('home.signin') }}"><i
+                                        class="fa-solid fa-right-to-bracket text-success"></i></a>
+                            @endauth
                             {{-- <div class="dropdown cart">
                                 <a class="dropdown-toggle" href="{{ route('home.cart') }}" id=""
                                     role="" data-toggle="" aria-haspopup="" aria-expanded="">
@@ -79,15 +101,7 @@
                 </div>
             </div>
         </div>
-        {{-- <div class="search_input" id="search_input_box">
-            <div class="container ">
-                <form class="d-flex justify-content-between search-inner">
-                    <input type="text" class="form-control" id="search_input" placeholder="Search Here">
-                    <button type="submit" class="btn"></button>
-                    <span class="ti-close" id="close_search" title="Close Search"></span>
-                </form>
-            </div>
-        </div> --}}
+
     </header>
     <!-- Header part end-->
 
@@ -148,18 +162,18 @@
                         <h4>Newsletter</h4>
                         <p>Heaven fruitful doesn't over lesser in days. Appear creeping
                         </p>
-                        <div id="mc_embed_signup">
-                            <form target="_blank"
-                                action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-                                method="get" class="subscribe_form relative mail_part">
-                                <input type="email" name="email" id="newsletter-form-email"
-                                    placeholder="Email Address" class="placeholder hide-on-focus"
-                                    onfocus="this.placeholder = ''" onblur="this.placeholder = ' Email Address '">
-                                <button type="submit" name="submit" id="newsletter-submit"
-                                    class="email_icon newsletter-submit button-contactForm">subscribe</button>
-                                <div class="mt-10 info"></div>
-                            </form>
-                        </div>
+                        <form action="{{ route('newsletter.send') }}" method="POST">
+                            @csrf
+                            <div class="input-group">
+                                <input type="email" class="form-control" placeholder="enter email address"
+                                    aria-label="Recipient's username" aria-describedby="basic-addon2"
+                                    name="email" id="email">
+                                <div class="input-group-append">
+                                    <button class="input-group-text btn_2" id="basic-addon2" type="submit">Subscribe
+                                        now</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -202,7 +216,6 @@
     </footer>
     <!--::footer_part end::-->
 
-    <!-- jquery plugins here-->
     <script src="js/jquery-1.12.1.min.js"></script>
     <!-- popper js -->
     <script src="js/popper.min.js"></script>
@@ -211,7 +224,7 @@
     <!-- easing js -->
     <script src="js/jquery.magnific-popup.js"></script>
     <!-- swiper js -->
-    <script src="js/swiper.min.js"></script>
+    <script src="js/lightslider.min.js"></script>
     <!-- swiper js -->
     <script src="js/masonry.pkgd.js"></script>
     <!-- particles js -->
@@ -219,6 +232,7 @@
     <script src="js/jquery.nice-select.min.js"></script>
     <!-- slick js -->
     <script src="js/slick.min.js"></script>
+    <script src="js/swiper.jquery.js"></script>
     <script src="js/jquery.counterup.min.js"></script>
     <script src="js/waypoints.min.js"></script>
     <script src="js/contact.js"></script>
@@ -226,7 +240,9 @@
     <script src="js/jquery.form.js"></script>
     <script src="js/jquery.validate.min.js"></script>
     <script src="js/mail-script.js"></script>
+    <script src="js/stellar.js"></script>
     <!-- custom js -->
+    <script src="js/theme.js"></script>
     <script src="js/custom.js"></script>
 </body>
 
