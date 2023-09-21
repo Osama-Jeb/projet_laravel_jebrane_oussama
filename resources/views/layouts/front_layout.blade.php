@@ -166,8 +166,8 @@
                             @csrf
                             <div class="input-group">
                                 <input type="email" class="form-control" placeholder="enter email address"
-                                    aria-label="Recipient's username" aria-describedby="basic-addon2"
-                                    name="email" id="email">
+                                    aria-label="Recipient's username" aria-describedby="basic-addon2" name="email"
+                                    id="email">
                                 <div class="input-group-append">
                                     <button class="input-group-text btn_2" id="basic-addon2" type="submit">Subscribe
                                         now</button>

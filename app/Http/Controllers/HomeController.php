@@ -10,7 +10,8 @@ class HomeController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view("frontend.pages.home", compact("products"));
+        $lastFourElements = $products->slice(-4);
+        return view("frontend.pages.home", compact("products", "lastFourElements"));
     }
 
     public function contact()

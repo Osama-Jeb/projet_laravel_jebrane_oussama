@@ -9,8 +9,9 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
-        return view("frontend.pages.category", compact("products"));
+        $fullproducts = Product::all();
+        $products = Product::paginate(8);
+        return view("frontend.pages.category", compact("products", "fullproducts"));
     }
 
 

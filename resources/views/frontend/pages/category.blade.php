@@ -62,7 +62,7 @@
                                 </ul>
                             </div>
                         </aside>
-
+{{-- 
                         <aside class="left_widgets p_filter_widgets">
                             <div class="l_w_title">
                                 <h3>Product filters</h3>
@@ -150,7 +150,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </aside>
+                        </aside> --}}
                     </div>
                 </div>
                 <div class="col-lg-9">
@@ -158,7 +158,7 @@
                         <div class="col-lg-12">
                             <div class="product_top_bar d-flex justify-content-between align-items-center">
                                 <div class="single_product_menu">
-                                    <p><span>10000 </span> Prodict Found</p>
+                                    <p><span>{{count($fullproducts)}} </span> Prodict Found</p>
                                 </div>
                                 <div class="single_product_menu d-flex">
                                     <h5>sort by : </h5>
@@ -168,17 +168,8 @@
                                         <option value="2">product</option>
                                     </select>
                                 </div>
-                                <div class="single_product_menu d-flex">
-                                    <h5>show :</h5>
-                                    <div class="top_pageniation">
-                                        <ul>
-                                            <li>1</li>
-                                            <li>2</li>
-                                            <li>3</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="single_product_menu d-flex">
+                                
+                                {{-- <div class="single_product_menu d-flex">
                                     <div class="input-group">
                                         <input type="text" class="form-control" placeholder="search"
                                             aria-describedby="inputGroupPrepend">
@@ -187,7 +178,7 @@
                                                     class="ti-search"></i></span>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -199,38 +190,16 @@
                                     <img src="{{ asset('storage/img/products/' . $product->image) }}" alt="">
                                     <div class="single_product_text">
                                         <h4>{{ $product->name }}</h4>
-                                        <h3>${{ $product->price }}</h3>
+                                        <h3><b>${{ $product->price }}</b></h3>
                                         <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
                                     </div>
                                 </div>
                             </div>
                         @endforeach
 
-                        {{-- PAGINATIONS --}}
-                        {{-- <div class="col-lg-12">
-                        <div class="pageination">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination justify-content-center">
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Previous">
-                                            <i class="ti-angle-double-left"></i>
-                                        </a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">6</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Next">
-                                            <i class="ti-angle-double-right"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div> --}}
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center text-center">
+                        {{ $products->links() }}
                     </div>
                 </div>
             </div>
