@@ -21,8 +21,7 @@
                                         </div>
                                     </div>
                                     <div class="banner_img d-none d-lg-block">
-                                        <img src="{{ asset('storage/img/products/' . $item->image) }}"
-                                            alt="">
+                                        <img src="{{ asset('storage/img/products/' . $item->image) }}" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -75,19 +74,29 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="product_list_slider owl-carousel">
-                        <div class="single_product_list_slider">
+                    <div class="">
+                        <div class="">
                             <div class="row align-items-center justify-content-between">
                                 @foreach ($products as $product)
                                     @if ($loop->iteration < 9)
                                         <div class="col-lg-3 col-sm-6">
                                             <div class="single_product_item">
-                                                <img src="{{ asset('storage/img/products/' . $product->image) }}"
-                                                    alt="">
+                                                <a href="{{ route('product.show', $product) }}">
+                                                    <img src="{{ asset('storage/img/products/' . $product->image) }}"
+                                                        alt="">
+                                                </a>
                                                 <div class="single_product_text">
                                                     <h4>{{ $product->name }}</h4>
-                                                    <h3><b>${{ $product->price }}</b></h3>
-                                                    <a class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+                                                    <h3><b>${{ $product->price }}.00</b></h3>
+                                                    <form action="{{ route('userProduct.store', [$product]) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <button class="btn add_cart" type="submit">
+                                                            <a>+ add to cart</a>
+                                                        </button>
+                                                    </form>
+                                                    {{-- <i class="ti-heart"></i> --}}
                                                 </div>
                                             </div>
                                         </div>
@@ -159,11 +168,20 @@
                         @foreach ($products as $product)
                             @if ($product->stock < 50)
                                 <div class="single_product_item">
-                                    <img src="{{ asset('storage/img/products/' . $product->image) }}" alt="">
+                                    <a href="{{ route('product.show', $product) }}">
+                                        <img src="{{ asset('storage/img/products/' . $product->image) }}" alt="">
+                                    </a>
                                     <div class="single_product_text">
                                         <h4>{{ $product->name }}</h4>
-                                        <h3><b>${{ $product->price }}</b></h3>
-                                        <a class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+                                        <h3><b>${{ $product->price }}.00</b></h3>
+                                        <form action="{{ route('userProduct.store', [$product]) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <button class="btn add_cart" type="submit">
+                                                <a>+ add to cart</a>
+                                            </button>
+                                        </form>
+                                        {{-- <a class="add_cart">+ add to cart<i class="ti-heart"></i></a> --}}
                                     </div>
                                 </div>
                             @endif

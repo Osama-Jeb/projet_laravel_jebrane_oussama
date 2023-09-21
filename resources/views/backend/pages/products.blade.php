@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <div class="text-center">
+                    <div class="text-center mb-4">
                         @include("backend.partials.products.productCreate")
                     </div>
                     <!-- component -->
@@ -35,7 +35,7 @@
                             </tr>
                         </thead>
                         <tbody class="block md:table-row-group">
-                            @foreach ($products->reverse() as $product)
+                            @foreach ($products as $product)
                                 <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
                                     <td class="p-2 md:border md:border-grey-500 text-center block md:table-cell "><img
                                             width="100px" src="{{ asset('storage/img/products/' . $product->image) }}"

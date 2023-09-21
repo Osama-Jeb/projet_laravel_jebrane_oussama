@@ -62,7 +62,7 @@
                                 </ul>
                             </div>
                         </aside>
-{{-- 
+                        {{-- 
                         <aside class="left_widgets p_filter_widgets">
                             <div class="l_w_title">
                                 <h3>Product filters</h3>
@@ -158,7 +158,7 @@
                         <div class="col-lg-12">
                             <div class="product_top_bar d-flex justify-content-between align-items-center">
                                 <div class="single_product_menu">
-                                    <p><span>{{count($fullproducts)}} </span> Prodict Found</p>
+                                    <p><span>{{ count($fullproducts) }} </span> Prodict Found</p>
                                 </div>
                                 <div class="single_product_menu d-flex">
                                     <h5>sort by : </h5>
@@ -168,7 +168,7 @@
                                         <option value="2">product</option>
                                     </select>
                                 </div>
-                                
+
                                 {{-- <div class="single_product_menu d-flex">
                                     <div class="input-group">
                                         <input type="text" class="form-control" placeholder="search"
@@ -191,7 +191,14 @@
                                     <div class="single_product_text">
                                         <h4>{{ $product->name }}</h4>
                                         <h3><b>${{ $product->price }}</b></h3>
-                                        <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+                                        <form action="{{ route('userProduct.store', [$product]) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <button class="btn add_cart" type="submit">
+                                                <a>+ add to cart</a>
+                                            </button>
+                                        </form>
+                                        {{-- <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a> --}}
                                     </div>
                                 </div>
                             </div>

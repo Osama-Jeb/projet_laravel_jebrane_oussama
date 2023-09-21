@@ -69,8 +69,7 @@
                     <h2 class="contact-title">Get in Touch</h2>
                 </div>
                 <div class="col-lg-8">
-                    <form class="" action="{{ route('mailbox.store') }}" method="POST"
-                        novalidate="novalidate">
+                    <form class="" action="{{ route('mailbox.store') }}" method="POST" novalidate="novalidate">
                         @csrf
                         <div class="row">
                             <div class="col-12">
@@ -81,14 +80,24 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input class="form-control" name="name" id="name" type="text"
-                                        placeholder='Enter your name'>
+                                    @auth
+                                        <input class="form-control" name="name" id="name" type="text"
+                                            value="{{ $user->name }}">
+                                    @else
+                                        <input class="form-control" name="name" id="name" type="text"
+                                            placeholder='Enter your name'>
+                                    @endauth
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input class="form-control" name="email" id="email" type="email"
-                                        placeholder='Enter email address'>
+                                    @auth
+                                        <input class="form-control" name="email" id="email" type="email"
+                                            value="{{$user->email}}">
+                                    @else
+                                        <input class="form-control" name="email" id="email" type="email"
+                                            placeholder='Enter email address'>
+                                    @endauth
                                 </div>
                             </div>
                             <div class="col-12">

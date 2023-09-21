@@ -267,13 +267,13 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <input type="text" class="form-control" id="name" name="name"
-                                                placeholder="Your Full name" />
+                                                placeholder="Your Full name" value="{{$user->name}}" />
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <input type="email" class="form-control" id="email" name="email"
-                                                placeholder="Email Address" />
+                                                placeholder="Email Address" value="{{$user->email}}" />
                                         </div>
                                     </div>
                                     <div class="col-md-12">

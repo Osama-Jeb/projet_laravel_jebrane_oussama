@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Yoeunes\Toastr\Facades\Toastr;
@@ -59,7 +60,8 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         $shuffled = Product::all()->shuffle()->take(5);
-        return view("frontend.partials.product_show", compact("product", "shuffled"));
+        $user = Auth::user();
+        return view("frontend.partials.product_show", compact("product", "shuffled", "user"));
     }
 
     public function update(Request $request, Product $product)
@@ -69,7 +71,6 @@ class ProductController extends Controller
             "desc" => ["required"],
             "stock" => ["required", "integer"],
             "price" => ["required", "integer"],
-            "category" => ["required"],
         ]);
 
         $imgSrc = request()->file("image");
@@ -89,7 +90,7 @@ class ProductController extends Controller
             "image" => $imgName ?? $product->image,
             "stock" => $request->stock,
             "price" => $request->price,
-            "category_id" => $request->category,
+            "category_id" => $product->category_id ?? $request->category,
             "user_id" => auth()->user()->id,
         ]);
 

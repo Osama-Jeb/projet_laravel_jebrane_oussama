@@ -5,6 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MailboxController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,7 +28,7 @@ use Illuminate\Support\Facades\Route;
 Route::get("/", [HomeController::class, "index"])->name("home.index");
 Route::get("/contact", [HomeController::class, "contact"])->name("home.contact");
 Route::get("/signin", [HomeController::class, "signin"])->name("home.signin");
-Route::get('/cart', [HomeController::class, "cart"])->name("home.cart");
+
 
 //! MAILBOX
 Route::get("/mailbox", [MailboxController::class, "index"])->name("mailbox.index");
@@ -42,6 +44,14 @@ Route::get("/products/show/{product}", [ProductController::class, "show"])->name
 Route::post("/products/store", [ProductController::class, "store"])->name("product.store");
 Route::put("/products/update/{product}", [ProductController::class, "update"])->name("product.update");
 Route::delete("/products/delete/{product}", [ProductController::class, "destroy"])->name("product.destroy");
+
+//~~ UserProduct
+Route::get("/userProduct", [UserProductController::class, "index"])->name("userProduct.index");
+Route::put("/userProduct/store/{product}", [UserProductController::class, "store"])->name("userProduct.store");
+
+
+//* Users
+Route::get("/users", [UserController::class, "index"])->name("user.index");
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');

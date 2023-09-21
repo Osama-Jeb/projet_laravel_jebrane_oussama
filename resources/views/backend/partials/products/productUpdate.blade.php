@@ -42,7 +42,7 @@
                         <select required class="form-select" name="category" id="category">
                             <option disabled selected>Choose a Category</option>
                             @foreach ($categories as $category)
-                                <option value="{{ $category->id }}" @selected(old('category_id') == $category->id)>{{ $category->category }}</option>
+                                <option value="{{ $category->id }}">{{ $category->category }}</option>
                             @endforeach
                         </select>
                     </div>

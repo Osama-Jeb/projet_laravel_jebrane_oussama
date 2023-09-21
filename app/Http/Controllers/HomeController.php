@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\UserProduct;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -17,7 +19,8 @@ class HomeController extends Controller
 
     public function contact()
     {
-        return view("frontend.pages.contact");
+        $user = Auth::user();
+        return view("frontend.pages.contact", compact("user"));
     }
 
     public function signin()
@@ -25,8 +28,5 @@ class HomeController extends Controller
         return view("frontend.pages.signin");
     }
 
-    public function cart()
-    {
-        return view("frontend.pages.cart");
-    }
+    
 }

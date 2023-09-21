@@ -73,7 +73,7 @@
                         </div>
                         <div class="hearer_icon d-flex">
                             <a href=""><i class="fa-regular fa-heart"></i></a>
-                            <a href="{{ route('home.cart') }}"><i class="fas fa-cart-plus"></i></a>
+                            <a href="{{ route('userProduct.index') }}"><i class="fas fa-cart-plus"></i></a>
                             @auth
                                 {{-- <a href="{{ route('logout') }}"><i class="fa-regular fa-user text-danger"></i></a> --}}
                                 <form method="POST" action="{{ route('logout') }}">
@@ -90,7 +90,7 @@
                                         class="fa-solid fa-right-to-bracket text-success"></i></a>
                             @endauth
                             {{-- <div class="dropdown cart">
-                                <a class="dropdown-toggle" href="{{ route('home.cart') }}" id=""
+                                <a class="dropdown-toggle" href="{{ route('userProduct.index') }}" id=""
                                     role="" data-toggle="" aria-haspopup="" aria-expanded="">
                                     <i class="fas fa-cart-plus"></i>
                                 </a>
