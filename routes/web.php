@@ -67,7 +67,7 @@ Route::middleware(['auth', 'verified', 'role:webmaster'])->group(function () {
 
     //^^ CRUD of Products
     Route::get("/products/admin", [ProductController::class, "admin"])->name("product.admin");
-    Route::post("/products/store", [ProductController::class, "store"])->name("product.store");
+    Route::post("/products/store/", [ProductController::class, "store"])->name("product.store");
     Route::put("/products/update/{product}", [ProductController::class, "update"])->name("product.update");
     Route::delete("/products/delete/{product}", [ProductController::class, "destroy"])->name("product.destroy");
 

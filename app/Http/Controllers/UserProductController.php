@@ -21,7 +21,7 @@ class UserProductController extends Controller
         return view("frontend.pages.cart", compact("userProducts", "subtotal"));
     }
 
-    public function store(Request $request, Product $product)
+    public function store(Product $product)
     {
         $user = auth()->user();
         $exist = UserProduct::where("user_id", $user->id)->where("product_id", $product->id)->first();
@@ -33,7 +33,7 @@ class UserProductController extends Controller
             UserProduct::create([
                 "user_id" => $user->id,
                 "product_id" => $product->id,
-                "quantity" => $request->input('quantity') ?? 1,
+                "quantity" => 1,
             ]);
             Toastr()->success("Added Successfully to Basket!");
         }

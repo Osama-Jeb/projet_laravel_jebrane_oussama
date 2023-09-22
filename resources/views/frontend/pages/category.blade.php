@@ -123,13 +123,17 @@
                                             <div class="single_product_text">
                                                 <h4>{{ $product->name }}</h4>
                                                 <h3><b>${{ $product->price }}</b></h3>
-                                                <form action="{{ route('userProduct.store', [$product]) }}" method="POST">
-                                                    @csrf
-                                                    @method('PUT')
-                                                    <button class="btn add_cart" type="submit">
-                                                        <a>+ add to cart</a>
-                                                    </button>
-                                                </form>
+                                                @if ($product->stock > 1)
+                                                    <form action="{{ route('userProduct.store', [$product]) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <button class="btn add_cart" type="submit">
+                                                        </button>
+                                                    </form>
+                                                @else
+                                                    <button disabled>Out of Stock</button>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -193,14 +197,18 @@
                                                     <div class="single_product_text">
                                                         <h4>{{ $product->name }}</h4>
                                                         <h3><b>${{ $product->price }}</b></h3>
-                                                        <form action="{{ route('userProduct.store', [$product]) }}"
-                                                            method="POST">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <button class="btn add_cart" type="submit">
-                                                                <a>+ add to cart</a>
-                                                            </button>
-                                                        </form>
+                                                        @if ($product->stock > 1)
+                                                            <form action="{{ route('userProduct.store', [$product]) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <button class="btn add_cart" type="submit">
+                                                                    <a>+ Add To Cart</a>
+                                                                </button>
+                                                            </form>
+                                                        @else
+                                                            <button disabled>Out of Stock</button>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>

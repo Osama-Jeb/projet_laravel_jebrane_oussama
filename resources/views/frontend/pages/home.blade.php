@@ -21,7 +21,8 @@
                                         </div>
                                     </div>
                                     <div class="banner_img d-none d-lg-block">
-                                        <img src="{{ asset('storage/img/products/' . $item->image) }}" alt="">
+                                        <img width="300" height="300"
+                                            src="{{ asset('storage/img/products/' . $item->image) }}" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -53,7 +54,8 @@
                             <p>{{ $element->desc }}</p>
                             <a href="{{ route('product.show', $element) }}" class="feature_btn">EXPLORE NOW <i
                                     class="fas fa-play"></i></a>
-                            <img src="{{ asset('storage/img/products/' . $element->image) }}" alt="">
+                            <img width="300" height="300" src="{{ asset('storage/img/products/' . $element->image) }}"
+                                alt="">
                         </div>
                     </div>
                 @endforeach
@@ -78,7 +80,7 @@
                         <div class="">
                             <div class="row align-items-center justify-content-between">
                                 @foreach ($products as $product)
-                                    @if ($loop->iteration < 9)
+                                    @if ($loop->iteration > 17)
                                         <div class="col-lg-3 col-sm-6">
                                             <div class="single_product_item">
                                                 <a href="{{ route('product.show', $product) }}">
@@ -88,14 +90,18 @@
                                                 <div class="single_product_text">
                                                     <h4>{{ $product->name }}</h4>
                                                     <h3><b>${{ $product->price }}.00</b></h3>
-                                                    <form action="{{ route('userProduct.store', [$product]) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <button class="btn add_cart" type="submit">
-                                                            <a>+ add to cart</a>
-                                                        </button>
-                                                    </form>
+                                                    @if ($product->stock > 1)
+                                                        <form action="{{ route('userProduct.store', [$product]) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <button class="btn add_cart" type="submit">
+                                                                <a>+ Add To Cart</a>
+                                                            </button>
+                                                        </form>
+                                                    @else
+                                                        <button disabled>Out of Stock</button>
+                                                    @endif
                                                     {{-- <i class="ti-heart"></i> --}}
                                                 </div>
                                             </div>
@@ -166,7 +172,7 @@
                 <div class="col-lg-12">
                     <div class="best_product_slider owl-carousel">
                         @foreach ($products as $product)
-                            @if ($product->stock < 50)
+                            @if ($product->stock < 5)
                                 <div class="single_product_item">
                                     <a href="{{ route('product.show', $product) }}">
                                         <img src="{{ asset('storage/img/products/' . $product->image) }}" alt="">

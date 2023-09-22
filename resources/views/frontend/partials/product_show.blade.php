@@ -64,15 +64,15 @@
                                 @method('PUT')
                                 <div class="product_count">
                                     <span class="inumber-decrement"> <i class="ti-minus"></i></span>
-                                    <input class="input-number" type="text" value="1" min="0" max="10">
+                                    <input class="quantity" type="number" value="1">
                                     <span class="number-increment"> <i class="ti-plus"></i></span>
                                 </div>
-                                <button class="btn add_cart" type="submit">
+                                <button class=" add_cart btn_3" type="submit">
                                     <a>+ add to cart</a>
                                 </button>
                             </form>
-                            <a href="#" class="btn_3">add to cart</a>
-                            <a href="#" class="like_us"> <i class="ti-heart"></i> </a>
+                            {{-- <a href="#" class="btn_3">add to cart</a>
+                            <a href="#" class="like_us"> <i class="ti-heart"></i> </a> --}}
                         </div>
                     </div>
                 </div>
