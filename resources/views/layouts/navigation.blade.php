@@ -5,9 +5,8 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('home.index') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
-                    </a>
+                    <a class="navbar-brand" href="{{ route('home.index') }}"> <img src="{{ asset('img/logo.png') }}"
+                            alt="logo"> </a>
                 </div>
 
                 <!-- Navigation Links -->
@@ -26,6 +25,10 @@
 
                     <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
                         {{ __('Users') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('info.index')" :active="request()->routeIs('info.index')">
+                        {{ __('Info') }}
                     </x-nav-link>
                 </div>
             </div>

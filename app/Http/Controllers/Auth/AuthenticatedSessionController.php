@@ -42,6 +42,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
+        Toastr()->error("Logged Out!", "Logout");
 
         return redirect('/');
     }

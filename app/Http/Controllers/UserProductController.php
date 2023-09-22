@@ -41,16 +41,18 @@ class UserProductController extends Controller
         return redirect()->back();
     }
 
-    public function destroy(Product $product)
+    public function decrease(Product $product)
     {
         $user = auth()->user();
+        // dd("ufff");
         $prod = UserProduct::where("user_id", $user->id)->where("product_id", $product->id)->first();
         $prod->quantity -= 1;
         if ($prod->quantity == 0) {
             $prod->delete();
-            Toastr()->error("Product Removed From Basket");
+            Toastr()->error("Product Removed From Basket!!", "Deleted");
         } else {
             $prod->save();
+            Toastr()->warning("Product Quantity Decreased!!");
         }
 
         return redirect()->back();

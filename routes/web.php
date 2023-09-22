@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InfoController;
 use App\Http\Controllers\MailboxController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -33,7 +35,7 @@ Route::get("/signin", [HomeController::class, "signin"])->name("home.signin");
 //! MAILBOX
 Route::get("/mailbox", [MailboxController::class, "index"])->name("mailbox.index");
 Route::post("/mailbox/store", [MailboxController::class, "store"])->name("mailbox.store");
-
+Route::delete("/mailbox/delete/{mailbox}", [MailboxController::class, "destroy"])->name("mailbox.destroy");
 //! NewsLetter Mail
 Route::post("/newsletter", [AdminController::class, "sendMail"])->name("newsletter.send");
 
@@ -48,7 +50,14 @@ Route::delete("/products/delete/{product}", [ProductController::class, "destroy"
 //~~ UserProduct
 Route::get("/userProduct", [UserProductController::class, "index"])->name("userProduct.index");
 Route::put("/userProduct/store/{product}", [UserProductController::class, "store"])->name("userProduct.store");
+Route::put("/userProduct/decrease/{product}", [UserProductController::class, "decrease"])->name("userProduct.decrease");
 
+// & Info
+Route::get("/info", [InfoController::class, "index"])->name("info.index");
+Route::put("/info/update/{info}", [InfoController::class, "update"])->name("info.update");
+
+//? Comments
+Route::post("/comment/store/{product}", [CommentController::class, "store"])->name("comment.store");
 
 //* Users
 Route::get("/users", [UserController::class, "index"])->name("user.index");

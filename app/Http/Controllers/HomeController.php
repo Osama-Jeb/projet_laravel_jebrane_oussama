@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Info;
 use App\Models\Product;
 use App\Models\UserProduct;
 use Illuminate\Http\Request;
@@ -20,7 +21,8 @@ class HomeController extends Controller
     public function contact()
     {
         $user = Auth::user();
-        return view("frontend.pages.contact", compact("user"));
+        $info = Info::first();
+        return view("frontend.pages.contact", compact("user", "info"));
     }
 
     public function signin()
@@ -28,5 +30,4 @@ class HomeController extends Controller
         return view("frontend.pages.signin");
     }
 
-    
 }

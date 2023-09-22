@@ -22,7 +22,7 @@
     <!-- ================ contact section start ================= -->
     <section class="contact-section padding_top">
         <div class="container">
-            <div class="d-none d-sm-block mb-5 pb-4">
+            {{-- <div class="d-none d-sm-block mb-5 pb-4">
                 <div id="map" style="height: 480px;"></div>
                 <script>
                     function initMap() {
@@ -61,7 +61,7 @@
                 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpfS1oRGreGSBU5HHjMmQ3o5NLw7VdJ6I&callback=initMap">
                 </script>
 
-            </div>
+            </div> --}}
 
 
             <div class="row">
@@ -118,21 +118,21 @@
                     <div class="media contact-info">
                         <span class="contact-info__icon"><i class="ti-home"></i></span>
                         <div class="media-body">
-                            <h3>Buttonwood, California.</h3>
-                            <p>Rosemead, CA 91770</p>
+                            <h3>{{$info->city}}</h3>
+                            <p>{{$info->adress}}</p>
                         </div>
                     </div>
                     <div class="media contact-info">
                         <span class="contact-info__icon"><i class="ti-tablet"></i></span>
                         <div class="media-body">
-                            <h3>00 (440) 9865 562</h3>
-                            <p>Mon to Fri 9am to 6pm</p>
+                            <h3>{{$info->phone}}</h3>
+                            <p>{{$info->hours}}</p>
                         </div>
                     </div>
                     <div class="media contact-info">
                         <span class="contact-info__icon"><i class="ti-email"></i></span>
                         <div class="media-body">
-                            <h3>support@colorlib.com</h3>
+                            <h3>{{$info->email}}</h3>
                             <p>Send us your query anytime!</p>
                         </div>
                     </div>

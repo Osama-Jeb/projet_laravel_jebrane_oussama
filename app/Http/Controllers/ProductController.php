@@ -12,10 +12,14 @@ use Yoeunes\Toastr\Facades\Toastr;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->input("sort")) {
+            $products = Product::orderBy($request->input("sort"))->paginate(8);
+        } else {
+            $products = Product::paginate(8);
+        }
         $fullproducts = Product::all();
-        $products = Product::paginate(8);
         return view("frontend.pages.category", compact("products", "fullproducts"));
     }
 

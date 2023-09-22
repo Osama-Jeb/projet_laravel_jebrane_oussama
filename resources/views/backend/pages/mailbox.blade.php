@@ -29,19 +29,22 @@
                         </thead>
                         <tbody class="block md:table-row-group">
 
-                            @foreach ($mails->reverse() as $mail)
+                            @foreach ($mails->reverse() as $mailbox)
                                 <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
                                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                                        {{ $mail->name }}</td>
+                                        {{ $mailbox->name }}</td>
                                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                                        {{ $mail->subject }}</td>
+                                        {{ $mailbox->subject }}</td>
                                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                                        {{ $mail->email }}</td>
+                                        {{ $mailbox->email }}</td>
                                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                                        <button
-                                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Show</button>
-                                        <button
-                                            class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Delete</button>
+                                        <form action="{{ route('mailbox.destroy', [$mailbox]) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Delete</button>
+                                        </form>
+                                        @include("backend.partials.mailbox.mailShow")
                                     </td>
                                 </tr>
                             @endforeach

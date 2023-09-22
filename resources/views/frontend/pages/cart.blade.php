@@ -63,7 +63,7 @@
                                                         </span>
                                                     </button>
                                                 </form>
-                                                <form action="{{ route('userProduct.store', [$item->product]) }}"
+                                                <form action="{{ route('userProduct.decrease', [$item->product]) }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('PUT')
