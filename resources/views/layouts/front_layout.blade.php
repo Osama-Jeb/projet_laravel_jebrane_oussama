@@ -64,7 +64,7 @@
                                     <a class="nav-link" href="{{ route('home.contact') }}">Contact</a>
                                 </li>
 
-                                @role('admin')
+                                @role(['admin', 'webmaster'])
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ route('dashboard') }}">Backend</a>
                                     </li>

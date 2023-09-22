@@ -17,7 +17,7 @@ class AdminSeeder extends Seeder
             "name" => "Admin",
             "email" => "admin@admin.com",
             "password" => "adminadmin",
-        ])->assignRole('admin');
+        ])->assignRole(['admin', 'webmaster']);
 
         User::create([
             "name" => "web",

@@ -14,5 +14,6 @@ class Mailbox extends Model
         "email",
         "message",
         "subject",
+        "read",
     ];
 }

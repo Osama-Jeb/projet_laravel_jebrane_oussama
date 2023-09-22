@@ -22,58 +22,62 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
-//* Frontend Shit
+//!! What a Normal User Can Do
 Route::get("/", [HomeController::class, "index"])->name("home.index");
 Route::get("/contact", [HomeController::class, "contact"])->name("home.contact");
 Route::get("/signin", [HomeController::class, "signin"])->name("home.signin");
-
-
-//! MAILBOX
-Route::get("/mailbox", [MailboxController::class, "index"])->name("mailbox.index");
+//* MAILBOX
 Route::post("/mailbox/store", [MailboxController::class, "store"])->name("mailbox.store");
-Route::delete("/mailbox/delete/{mailbox}", [MailboxController::class, "destroy"])->name("mailbox.destroy");
-//! NewsLetter Mail
+//* NewsLetter Mail
 Route::post("/newsletter", [AdminController::class, "sendMail"])->name("newsletter.send");
-
-// ^^ PRODUCT
+//* PRODUCT
 Route::get("/products", [ProductController::class, "index"])->name("product.index");
-Route::get("/products/admin", [ProductController::class, "admin"])->name("product.admin");
 Route::get("/products/show/{product}", [ProductController::class, "show"])->name("product.show");
-Route::post("/products/store", [ProductController::class, "store"])->name("product.store");
-Route::put("/products/update/{product}", [ProductController::class, "update"])->name("product.update");
-Route::delete("/products/delete/{product}", [ProductController::class, "destroy"])->name("product.destroy");
-
-//~~ UserProduct
+//* Cart Page
 Route::get("/userProduct", [UserProductController::class, "index"])->name("userProduct.index");
-Route::put("/userProduct/store/{product}", [UserProductController::class, "store"])->name("userProduct.store");
-Route::put("/userProduct/decrease/{product}", [UserProductController::class, "decrease"])->name("userProduct.decrease");
 
-// & Info
-Route::get("/info", [InfoController::class, "index"])->name("info.index");
-Route::put("/info/update/{info}", [InfoController::class, "update"])->name("info.update");
 
-//? Comments
-Route::post("/comment/store/{product}", [CommentController::class, "store"])->name("comment.store");
-
-//* Users
-Route::get("/users", [UserController::class, "index"])->name("user.index");
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
+//!! Admin Authorities
 Route::middleware(['auth', "verified", "role:admin"])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get("/dashboard", function() {
-        return view("dashboard");
-    })->name("dashboard");
+    // & Info
+    Route::get("/info", [InfoController::class, "index"])->name("info.index");
+    Route::put("/info/update/{info}", [InfoController::class, "update"])->name("info.update");
 
+    //* Users
+    Route::get("/users", [UserController::class, "index"])->name("user.index");
+    Route::put("/users/changeRole/{user}", [UserController::class, "changeRole"])->name("user.changeRole");
+    Route::delete("/users/delete/{user}", [UserController::class, "destroy"])->name("user.destroy");
+
+    //! Mailbox
+    Route::get("/mailbox", [MailboxController::class, "index"])->name("mailbox.index");
+    Route::put("/mailbox/read/{mailbox}", [MailboxController::class, "read"])->name("mailbox.read");
+    Route::delete("/mailbox/delete/{mailbox}", [MailboxController::class, "destroy"])->name("mailbox.destroy");
 });
 
-require __DIR__.'/auth.php';
+//!! webmaster Authorities
+Route::middleware(['auth', 'verified', 'role:webmaster'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    //^^ CRUD of Products
+    Route::get("/products/admin", [ProductController::class, "admin"])->name("product.admin");
+    Route::post("/products/store", [ProductController::class, "store"])->name("product.store");
+    Route::put("/products/update/{product}", [ProductController::class, "update"])->name("product.update");
+    Route::delete("/products/delete/{product}", [ProductController::class, "destroy"])->name("product.destroy");
+
+    //? Comments
+    Route::post("/comment/store/{product}", [CommentController::class, "store"])->name("comment.store");
+
+    //~~ UserProduct
+    Route::put("/userProduct/store/{product}", [UserProductController::class, "store"])->name("userProduct.store");
+    Route::put("/userProduct/decrease/{product}", [UserProductController::class, "decrease"])->name("userProduct.decrease");
+});
+
+
+require __DIR__ . '/auth.php';

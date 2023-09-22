@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer("price");
             $table->string("image");
             $table->foreignId("category_id")->constrained();
-            $table->foreignId("user_id")->constrained();
+            $table->foreignId("user_id")->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

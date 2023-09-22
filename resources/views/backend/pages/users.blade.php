@@ -31,17 +31,35 @@
                         <tbody class="block md:table-row-group">
                             @foreach ($users as $user)
                                 <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
-                                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{{$user->name}}</td>
-                                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{{$user->email}}</td>
-                                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{{$user->roles[0]->name}}
-                                    </td>
                                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                                        <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
-                                        <button
-                                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Add Role</button>
-                                        <button
-                                            class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Delete</button>
+                                        {{ $user->name }}</td>
+                                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                                        {{ $user->email }}</td>
+                                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                                        {{ $user->roles[0]->name }}
                                     </td>
+
+                                    @if ($loop->iteration > 1)
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                                            <form action="{{ route('user.changeRole', $user) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <button
+                                                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Change
+                                                    Role</button>
+                                            </form>
+
+                                            <form action="{{ route('user.destroy', $user) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button
+                                                    class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Delete</button>
+                                            </form>
+                                        </td>
+
+                                    @else
+                                        <td></td>
+                                    @endif
                                 </tr>
                             @endforeach
 

@@ -30,11 +30,21 @@ class MailboxController extends Controller
             "email" => $request->email,
             "message" => $request->message,
             "subject" => $request->subject,
+            "read" => false,
         ]);
 
         Toastr()->success('Message successfully Sent!!', 'Congrats');
 
         Mail::to("admin@admin.com")->send(new Message($mailbox));
+
+        return redirect()->back();
+    }
+
+    public function read(Mailbox $mailbox)
+    {
+        $mailbox->update([
+            "read" => true,
+        ]);
 
         return redirect()->back();
     }

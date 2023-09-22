@@ -15,21 +15,23 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('mailbox.index')" :active="request()->routeIs('mailbox')">
-                        {{ __('Mailbox') }}
-                    </x-nav-link>
-
                     <x-nav-link :href="route('product.admin')" :active="request()->routeIs('product.admin')">
                         {{ __('Products') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
-                        {{ __('Users') }}
-                    </x-nav-link>
+                    @role('admin')
+                        <x-nav-link :href="route('mailbox.index')" :active="request()->routeIs('mailbox')">
+                            {{ __('Mailbox') }}
+                        </x-nav-link>
 
-                    <x-nav-link :href="route('info.index')" :active="request()->routeIs('info.index')">
-                        {{ __('Info') }}
-                    </x-nav-link>
+                        <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
+                            {{ __('Users') }}
+                        </x-nav-link>
+
+                        <x-nav-link :href="route('info.index')" :active="request()->routeIs('info.index')">
+                            {{ __('Info') }}
+                        </x-nav-link>
+                    @endrole
                 </div>
             </div>
 

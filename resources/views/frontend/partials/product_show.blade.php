@@ -26,17 +26,17 @@
                 <div class="col-lg-7 col-xl-7">
                     <div class="product_slider_img">
                         <div id="vertical">
-                            <div data-thumb="{{asset('storage/img/products/' . $product->image)}}">
-                                <img src="{{asset('storage/img/products/' . $product->image)}}" />
+                            <div data-thumb="{{ asset('storage/img/products/' . $product->image) }}">
+                                <img src="{{ asset('storage/img/products/' . $product->image) }}" />
                             </div>
-                            <div data-thumb="{{asset('storage/img/products/' . $product->image)}}">
-                                <img src="{{asset('storage/img/products/' . $product->image)}}" />
+                            <div data-thumb="{{ asset('storage/img/products/' . $product->image) }}">
+                                <img src="{{ asset('storage/img/products/' . $product->image) }}" />
                             </div>
-                            <div data-thumb="{{asset('storage/img/products/' . $product->image)}}">
-                                <img src="{{asset('storage/img/products/' . $product->image)}}" />
+                            <div data-thumb="{{ asset('storage/img/products/' . $product->image) }}">
+                                <img src="{{ asset('storage/img/products/' . $product->image) }}" />
                             </div>
-                            <div data-thumb="{{asset('storage/img/products/' . $product->image)}}">
-                                <img src="{{asset('storage/img/products/' . $product->image)}}" />
+                            <div data-thumb="{{ asset('storage/img/products/' . $product->image) }}">
+                                <img src="{{ asset('storage/img/products/' . $product->image) }}" />
                             </div>
                         </div>
                     </div>
@@ -44,26 +44,33 @@
                 <div class="col-lg-5 col-xl-4">
                     <div class="s_product_text">
                         <h5>previous <span>|</span> next</h5>
-                        <h3>{{$product->name}}</h3>
-                        <h2>${{$product->price}}</h2>
+                        <h3>{{ $product->name }}</h3>
+                        <h2>${{ $product->price }}</h2>
                         <ul class="list">
                             <li>
                                 <a class="active" href="#">
-                                    <span>Category</span> : {{$product->category->category}}</a>
+                                    <span>Category</span> : {{ $product->category->category }}</a>
                             </li>
                             <li>
-                                <a href="#"> <span>Availibility</span> : {{$product->stock}} left</a>
+                                <a href="#"> <span>Availibility</span> : {{ $product->stock }} left</a>
                             </li>
                         </ul>
                         <p>
-                            {{$product->desc}}
+                            {{ $product->desc }}
                         </p>
                         <div class="card_area d-flex justify-content-between align-items-center">
-                            <div class="product_count">
-                                <span class="inumber-decrement"> <i class="ti-minus"></i></span>
-                                <input class="input-number" type="text" value="1" min="0" max="10">
-                                <span class="number-increment"> <i class="ti-plus"></i></span>
-                            </div>
+                            <form action="{{ route('userProduct.store', [$product]) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <div class="product_count">
+                                    <span class="inumber-decrement"> <i class="ti-minus"></i></span>
+                                    <input class="input-number" type="text" value="1" min="0" max="10">
+                                    <span class="number-increment"> <i class="ti-plus"></i></span>
+                                </div>
+                                <button class="btn add_cart" type="submit">
+                                    <a>+ add to cart</a>
+                                </button>
+                            </form>
                             <a href="#" class="btn_3">add to cart</a>
                             <a href="#" class="like_us"> <i class="ti-heart"></i> </a>
                         </div>
@@ -262,19 +269,29 @@
                         <div class="col-lg-6">
                             <div class="review_box">
                                 <h4>Post a comment</h4>
-                                <form class="row " action="{{route('comment.store', [$product])}}" method="POST"
+                                <form class="row " action="{{ route('comment.store', [$product]) }}" method="POST"
                                     id="" novalidate="novalidate">
                                     @csrf
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="name" name="name"
-                                                placeholder="Your Full name" value="{{$user->name}}" />
+                                            @auth
+                                                <input type="text" class="form-control" id="name" name="name"
+                                                    placeholder="Your Full name" value="{{ $user->name }}" />
+                                            @else
+                                                <input type="text" class="form-control" id="name" name="name"
+                                                    placeholder="Your Full name" />
+                                            @endauth
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <input type="email" class="form-control" id="email" name="email"
-                                                placeholder="Email Address" value="{{$user->email}}" />
+                                            @auth
+                                                <input type="email" class="form-control" id="email" name="email"
+                                                    placeholder="Email Address" value="{{ $user->email }}" />
+                                            @else
+                                                <input type="email" class="form-control" id="email" name="email"
+                                                    placeholder="Email Address" />
+                                            @endauth
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -509,14 +526,13 @@
                 <div class="col-lg-12">
                     <div class="best_product_slider owl-carousel">
                         @foreach ($shuffled as $item)
-                        <div class="single_product_item">
-                            <img src="{{asset('storage/img/products/' . $item->image)}}" alt="">
-                            <div class="single_product_text">
-                                <h4>{{$item->name}}</h4>
-                                <h3>${{$item->price}}</h3>
+                            <div class="single_product_item">
+                                <img src="{{ asset('storage/img/products/' . $item->image) }}" alt="">
+                                <div class="single_product_text">
+                                    <h4>{{ $item->name }}</h4>
+                                    <h3>${{ $item->price }}</h3>
+                                </div>
                             </div>
-                        </div>
-                            
                         @endforeach
                     </div>
                 </div>
