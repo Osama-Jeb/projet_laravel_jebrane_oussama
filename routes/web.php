@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\FavController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\MailboxController;
@@ -23,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-//!! What a Normal User Can Do
+//!! Normal User
 Route::get("/", [HomeController::class, "index"])->name("home.index");
 Route::get("/contact", [HomeController::class, "contact"])->name("home.contact");
 Route::get("/signin", [HomeController::class, "signin"])->name("home.signin");
@@ -36,6 +37,22 @@ Route::get("/products", [ProductController::class, "index"])->name("product.inde
 Route::get("/products/show/{product}", [ProductController::class, "show"])->name("product.show");
 //* Cart Page
 Route::get("/userProduct", [UserProductController::class, "index"])->name("userProduct.index");
+
+
+//!! Signed User
+Route::middleware(["auth", "verified"])->group(function () {
+    // ^^ Product Fav
+    Route::get("/favorite", [FavController::class, "index"])->name("fav.index");
+    Route::put("/product/favorite/{product}", [ProductController::class, "favUnfav"])->name("product.fav");
+
+    //~~ UserProduct
+    Route::put("/userProduct/store/{product}", [UserProductController::class, "store"])->name("userProduct.store");
+    Route::put("/userProduct/decrease/{product}", [UserProductController::class, "decrease"])->name("userProduct.decrease");
+    Route::delete("userProduct/delete/{product}", [UserProductController::class, "destroy"])->name("userProduct.destroy");
+
+    //? Comments
+    Route::post("/comment/store/{product}", [CommentController::class, "store"])->name("comment.store");
+});
 
 
 //!! Admin Authorities
@@ -70,13 +87,6 @@ Route::middleware(['auth', 'verified', 'role:webmaster'])->group(function () {
     Route::post("/products/store/", [ProductController::class, "store"])->name("product.store");
     Route::put("/products/update/{product}", [ProductController::class, "update"])->name("product.update");
     Route::delete("/products/delete/{product}", [ProductController::class, "destroy"])->name("product.destroy");
-
-    //? Comments
-    Route::post("/comment/store/{product}", [CommentController::class, "store"])->name("comment.store");
-
-    //~~ UserProduct
-    Route::put("/userProduct/store/{product}", [UserProductController::class, "store"])->name("userProduct.store");
-    Route::put("/userProduct/decrease/{product}", [UserProductController::class, "decrease"])->name("userProduct.decrease");
 });
 
 

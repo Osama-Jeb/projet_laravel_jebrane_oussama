@@ -111,4 +111,17 @@ class ProductController extends Controller
         Toastr()->error("Product Deleted", "Watchout");
         return redirect()->back();
     }
+
+    public function favUnfav(Product $product)
+    {
+        if ($product->fav) {
+            $product->fav = false;
+            Toastr()->error("Removed From Favorites", "Product");
+        } else {
+            $product->fav = true;
+            Toastr()->success("Added To Favorites", "Product");
+        }
+        $product->save();
+        return redirect()->back();
+    }
 }

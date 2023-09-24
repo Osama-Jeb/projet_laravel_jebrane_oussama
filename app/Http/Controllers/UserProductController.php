@@ -13,7 +13,8 @@ class UserProductController extends Controller
 
     public function index()
     {
-        $userProducts = UserProduct::all();
+        $user = auth()->user();
+        $userProducts = UserProduct::where("user_id", $user->id)->get();
         $subtotal = 0;
         foreach ($userProducts as $key => $item) {
             $subtotal += $item->quantity * $item->product->price;
@@ -38,6 +39,9 @@ class UserProductController extends Controller
             Toastr()->success("Added Successfully to Basket!");
         }
 
+        $product->stock -= 1;
+        $product->save();
+
         return redirect()->back();
     }
 
@@ -46,6 +50,9 @@ class UserProductController extends Controller
         $user = auth()->user();
         $prod = UserProduct::where("user_id", $user->id)->where("product_id", $product->id)->first();
         $prod->quantity -= 1;
+
+        $product->stock += 1;
+        $product->save();
         if ($prod->quantity == 0) {
             $prod->delete();
             Toastr()->error("Product Removed From Basket!!", "Deleted");
@@ -55,6 +62,18 @@ class UserProductController extends Controller
         }
 
         return redirect()->back();
+    }
+
+    public function destroy(Product $product)
+    {
+        $user = auth()->user();
+        $prod = UserProduct::where("user_id", $user->id)->where("product_id", $product->id)->first();
         
+        $product->stock += $prod->quantity;
+        $product->save();
+        
+        $prod->delete();
+        Toastr()->error("Removed From Cart", "Product");
+        return redirect()->back();
     }
 }

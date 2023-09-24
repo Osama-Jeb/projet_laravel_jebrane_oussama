@@ -59,18 +59,26 @@
                             {{ $product->desc }}
                         </p>
                         <div class="card_area d-flex justify-content-between align-items-center">
-                            <form action="{{ route('userProduct.store', [$product]) }}" method="POST">
-                                @csrf
-                                @method('PUT')
-                                <div class="product_count">
-                                    <span class="inumber-decrement"> <i class="ti-minus"></i></span>
-                                    <input class="quantity" type="number" value="1">
-                                    <span class="number-increment"> <i class="ti-plus"></i></span>
+                            @if ($product->stock >= 1)
+                                <div class="d-flex">
+                                    <form action="{{ route('userProduct.store', [$product]) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <button class="btn add_cart p-0" type="submit">
+                                            <a>+ add to cart</a>
+                                        </button>
+                                    </form>
+                                    <form action="{{ route('product.fav', [$product]) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <button class="btn add_cart p-0" type="submit">
+                                            <a><i class="ti-heart"></i> </a>
+                                        </button>
+                                    </form>
                                 </div>
-                                <button class=" add_cart btn_3" type="submit">
-                                    <a>+ add to cart</a>
-                                </button>
-                            </form>
+                            @else
+                                <button disabled>Out of Stock</button>
+                            @endif
                             {{-- <a href="#" class="btn_3">add to cart</a>
                             <a href="#" class="like_us"> <i class="ti-heart"></i> </a> --}}
                         </div>

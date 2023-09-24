@@ -39,7 +39,9 @@
                                     <td>
                                         <div class="media">
                                             <div class="d-flex">
-                                                <img width="100px" src="{{asset('storage/img/products/' . $item->product->image)}}" alt="" />
+                                                <img width="100px"
+                                                    src="{{ asset('storage/img/products/' . $item->product->image) }}"
+                                                    alt="" />
                                             </div>
                                             <div class="media-body">
                                                 <p>{{ $item->product->name }}</p>
@@ -51,7 +53,8 @@
                                     </td>
                                     <td>
                                         <div class="d-flex align-items-center ">
-                                            <input class="form-control w-25" disabled type="text" value="{{ $item->quantity }}">
+                                            <input class="form-control w-25" disabled type="text"
+                                                value="{{ $item->quantity }}">
                                             <div class="d-flex flex-column">
                                                 <form action="{{ route('userProduct.store', [$item->product]) }}"
                                                     method="POST">
@@ -79,6 +82,14 @@
                                     <td>
                                         <h5>${{ $item->product->price * $item->quantity }}.00</h5>
                                     </td>
+                                    <td>
+                                        <form action="{{ route('userProduct.destroy', [$item->product]) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn" type="submit"><i class="fa-solid fa-trash-can"
+                                                    style="color: #ea0b0b;"></i></button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
                             <tr>
@@ -88,13 +99,13 @@
                                     <h5>Subtotal</h5>
                                 </td>
                                 <td>
-                                    <h5>${{$subtotal}}.00</h5>
+                                    <h5>${{ $subtotal }}.00</h5>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                     <div class="checkout_btn_inner float-right">
-                        <a class="btn_1" href="{{route('product.index')}}">Continue Shopping</a>
+                        <a class="btn_1" href="{{ route('product.index') }}">Continue Shopping</a>
                         {{-- <button class="btn_1 checkout_btn_1 disabled">Proceed to checkout</button> --}}
                     </div>
                 </div>

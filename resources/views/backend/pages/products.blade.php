@@ -63,35 +63,39 @@
                                 @endforeach
                             @endrole
                             @role('webmaster')
-                                @foreach ($products as $product)
-                                    @if ($product->user_id == auth()->user()->id)
-                                        <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
-                                            <td class="p-2 md:border md:border-grey-500 text-center block md:table-cell ">
-                                                <img width="100px"
-                                                    src="{{ asset('storage/img/products/' . $product->image) }}"
-                                                    alt="">
-                                            </td>
-                                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                                                {{ $product->name }}
-                                            </td>
-                                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                                                {{ $product->stock }}</td>
-                                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                                                ${{ $product->price }}
-                                            </td>
-                                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                                                <form action="{{ route('product.destroy', $product) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit"
-                                                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded"><i
-                                                            class="fa-solid fa-trash-can"></i></button>
-                                                </form>
-                                                @include('backend.partials.products.productUpdate')
-                                            </td>
-                                        </tr>
-                                    @endif
-                                @endforeach
+                                @if (!auth()->user()->hasRole('admin'))
+                                    @foreach ($products as $product)
+                                        @if ($product->user_id == auth()->user()->id)
+                                            <tr
+                                                class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
+                                                <td
+                                                    class="p-2 md:border md:border-grey-500 text-center block md:table-cell ">
+                                                    <img width="100px"
+                                                        src="{{ asset('storage/img/products/' . $product->image) }}"
+                                                        alt="">
+                                                </td>
+                                                <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                                                    {{ $product->name }}
+                                                </td>
+                                                <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                                                    {{ $product->stock }}</td>
+                                                <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                                                    ${{ $product->price }}
+                                                </td>
+                                                <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                                                    <form action="{{ route('product.destroy', $product) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit"
+                                                            class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded"><i
+                                                                class="fa-solid fa-trash-can"></i></button>
+                                                    </form>
+                                                    @include('backend.partials.products.productUpdate')
+                                                </td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
+                                @endif
                             @endrole
 
                         </tbody>

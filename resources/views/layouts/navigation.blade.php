@@ -55,9 +55,11 @@
                     </x-slot>
 
                     <x-slot name="content">
+                        @role("admin")
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
+                        @endrole
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">

@@ -33,29 +33,6 @@
     </section>
     <!-- breadcrumb start-->
 
-    {{-- <div class="row">
-        <div class="col-3">
-            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab"
-                    aria-controls="v-pills-profile" aria-selected="false">Profile</a>
-                <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab"
-                    aria-controls="v-pills-messages" aria-selected="false">Messages</a>
-                <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab"
-                    aria-controls="v-pills-settings" aria-selected="false">Settings</a>
-            </div>
-        </div>
-        <div class="col-9">
-            <div class="tab-content" id="v-pills-tabContent">
-
-                <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">...
-                </div>
-                <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...
-                </div>
-                <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...
-                </div>
-            </div>
-        </div>
-    </div> --}}
     <!--================Category Product Area =================-->
     <section class="cat_product_area section_padding">
         <div class="container">
@@ -123,14 +100,25 @@
                                             <div class="single_product_text">
                                                 <h4>{{ $product->name }}</h4>
                                                 <h3><b>${{ $product->price }}</b></h3>
-                                                @if ($product->stock > 1)
-                                                    <form action="{{ route('userProduct.store', [$product]) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <button class="btn add_cart" type="submit">
-                                                        </button>
-                                                    </form>
+                                                @if ($product->stock >= 1)
+                                                    <div class="d-flex">
+                                                        <form action="{{ route('userProduct.store', [$product]) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <button class="btn add_cart p-0" type="submit">
+                                                                <a>+ add to cart</a>
+                                                            </button>
+                                                        </form>
+                                                        <form action="{{ route('product.fav', [$product]) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <button class="btn add_cart p-0" type="submit">
+                                                                <a><i class="ti-heart"></i> </a>
+                                                            </button>
+                                                        </form>
+                                                    </div>
                                                 @else
                                                     <button disabled>Out of Stock</button>
                                                 @endif
@@ -160,14 +148,28 @@
                                                     <div class="single_product_text">
                                                         <h4>{{ $product->name }}</h4>
                                                         <h3><b>${{ $product->price }}</b></h3>
+                                                        @if ($product->stock >= 1)
+                                                    <div class="d-flex">
                                                         <form action="{{ route('userProduct.store', [$product]) }}"
                                                             method="POST">
                                                             @csrf
                                                             @method('PUT')
-                                                            <button class="btn add_cart" type="submit">
+                                                            <button class="btn add_cart p-0" type="submit">
                                                                 <a>+ add to cart</a>
                                                             </button>
                                                         </form>
+                                                        <form action="{{ route('product.fav', [$product]) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <button class="btn add_cart p-0" type="submit">
+                                                                <a><i class="ti-heart"></i> </a>
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                @else
+                                                    <button disabled>Out of Stock</button>
+                                                @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -197,18 +199,28 @@
                                                     <div class="single_product_text">
                                                         <h4>{{ $product->name }}</h4>
                                                         <h3><b>${{ $product->price }}</b></h3>
-                                                        @if ($product->stock > 1)
+                                                        @if ($product->stock >= 1)
+                                                        <div class="d-flex">
                                                             <form action="{{ route('userProduct.store', [$product]) }}"
                                                                 method="POST">
                                                                 @csrf
                                                                 @method('PUT')
-                                                                <button class="btn add_cart" type="submit">
-                                                                    <a>+ Add To Cart</a>
+                                                                <button class="btn add_cart p-0" type="submit">
+                                                                    <a>+ add to cart</a>
                                                                 </button>
                                                             </form>
-                                                        @else
-                                                            <button disabled>Out of Stock</button>
-                                                        @endif
+                                                            <form action="{{ route('product.fav', [$product]) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <button class="btn add_cart p-0" type="submit">
+                                                                    <a><i class="ti-heart"></i> </a>
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    @else
+                                                        <button disabled>Out of Stock</button>
+                                                    @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -238,14 +250,28 @@
                                                     <div class="single_product_text">
                                                         <h4>{{ $product->name }}</h4>
                                                         <h3><b>${{ $product->price }}</b></h3>
+                                                        @if ($product->stock >= 1)
+                                                    <div class="d-flex">
                                                         <form action="{{ route('userProduct.store', [$product]) }}"
                                                             method="POST">
                                                             @csrf
                                                             @method('PUT')
-                                                            <button class="btn add_cart" type="submit">
+                                                            <button class="btn add_cart p-0" type="submit">
                                                                 <a>+ add to cart</a>
                                                             </button>
                                                         </form>
+                                                        <form action="{{ route('product.fav', [$product]) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <button class="btn add_cart p-0" type="submit">
+                                                                <a><i class="ti-heart"></i> </a>
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                @else
+                                                    <button disabled>Out of Stock</button>
+                                                @endif
                                                     </div>
                                                 </div>
                                             </div>
